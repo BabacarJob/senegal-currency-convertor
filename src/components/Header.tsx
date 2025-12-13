@@ -1,9 +1,12 @@
-import { Menu, X, Phone, MapPin } from "lucide-react";
+import { Menu, X, Phone, MapPin, User } from "lucide-react";
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
+import { useAuth } from "@/hooks/useAuth";
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const { user } = useAuth();
 
   const navLinks = [
     { href: "#accueil", label: "Accueil" },
@@ -57,9 +60,18 @@ const Header = () => {
                 {link.label}
               </a>
             ))}
-            <Button>
-              Nous Contacter
-            </Button>
+            {user ? (
+              <Button asChild variant="outline">
+                <Link to="/compte">
+                  <User className="h-4 w-4 mr-2" />
+                  Mon Compte
+                </Link>
+              </Button>
+            ) : (
+              <Button asChild>
+                <Link to="/auth">Connexion</Link>
+              </Button>
+            )}
           </div>
 
           {/* Mobile menu button */}
@@ -87,9 +99,18 @@ const Header = () => {
                   {link.label}
                 </a>
               ))}
-              <Button className="w-full mt-2">
-                Nous Contacter
-              </Button>
+              {user ? (
+                <Button asChild variant="outline" className="w-full mt-2">
+                  <Link to="/compte">
+                    <User className="h-4 w-4 mr-2" />
+                    Mon Compte
+                  </Link>
+                </Button>
+              ) : (
+                <Button asChild className="w-full mt-2">
+                  <Link to="/auth">Connexion</Link>
+                </Button>
+              )}
             </div>
           </div>
         )}
