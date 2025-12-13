@@ -14,7 +14,123 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      exchange_rates: {
+        Row: {
+          buy_rate: number
+          currency_code: string
+          currency_name: string
+          flag: string
+          id: string
+          is_active: boolean
+          margin_percent: number
+          sell_rate: number
+          updated_at: string
+        }
+        Insert: {
+          buy_rate: number
+          currency_code: string
+          currency_name: string
+          flag: string
+          id?: string
+          is_active?: boolean
+          margin_percent?: number
+          sell_rate: number
+          updated_at?: string
+        }
+        Update: {
+          buy_rate?: number
+          currency_code?: string
+          currency_name?: string
+          flag?: string
+          id?: string
+          is_active?: boolean
+          margin_percent?: number
+          sell_rate?: number
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      profiles: {
+        Row: {
+          created_at: string
+          email: string | null
+          full_name: string | null
+          id: string
+          loyalty_points: number
+          phone: string | null
+          preferred_currency: string | null
+          updated_at: string
+          user_id: string
+          vip_status: boolean
+        }
+        Insert: {
+          created_at?: string
+          email?: string | null
+          full_name?: string | null
+          id?: string
+          loyalty_points?: number
+          phone?: string | null
+          preferred_currency?: string | null
+          updated_at?: string
+          user_id: string
+          vip_status?: boolean
+        }
+        Update: {
+          created_at?: string
+          email?: string | null
+          full_name?: string | null
+          id?: string
+          loyalty_points?: number
+          phone?: string | null
+          preferred_currency?: string | null
+          updated_at?: string
+          user_id?: string
+          vip_status?: boolean
+        }
+        Relationships: []
+      }
+      transactions: {
+        Row: {
+          amount: number
+          converted_amount: number
+          created_at: string
+          exchange_rate: number
+          fees: number
+          from_currency: string
+          id: string
+          points_earned: number
+          status: string
+          to_currency: string
+          user_id: string | null
+        }
+        Insert: {
+          amount: number
+          converted_amount: number
+          created_at?: string
+          exchange_rate: number
+          fees?: number
+          from_currency: string
+          id?: string
+          points_earned?: number
+          status?: string
+          to_currency: string
+          user_id?: string | null
+        }
+        Update: {
+          amount?: number
+          converted_amount?: number
+          created_at?: string
+          exchange_rate?: number
+          fees?: number
+          from_currency?: string
+          id?: string
+          points_earned?: number
+          status?: string
+          to_currency?: string
+          user_id?: string | null
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
